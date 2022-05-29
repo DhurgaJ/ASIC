@@ -1,5 +1,5 @@
 # ASIC
-Prequisite installation
+Prequisite installation for Openlane and CARAVEL
 
 #install git:
 $ sudo apt update
@@ -65,6 +65,7 @@ ii. Copy files config.json, config.tcl, pin_order.cfg from /home/dhurga/caravel_
 to directory
 /home/dhurga/caravel_tutorial/caravel_walkthrough/openlane/counter_16bit/
 iii. Modify the highlighted contents of config.json file (contents of the file is given below)
+"
 {
     "PDK"                      : "sky130A",
     "STD_CELL_LIBRARY"         : "sky130_fd_sc_hd",
