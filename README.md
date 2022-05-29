@@ -65,8 +65,7 @@ ii. Copy files config.json, config.tcl, pin_order.cfg from /home/dhurga/caravel_
 to directory
 /home/dhurga/caravel_tutorial/caravel_walkthrough/openlane/counter_16bit/
 iii. Modify the highlighted contents of config.json file (contents of the file is given below)
-"
-{
+
     "PDK"                      : "sky130A",
     "STD_CELL_LIBRARY"         : "sky130_fd_sc_hd",
     "CARAVEL_ROOT"             : "../../caravel",
@@ -86,7 +85,7 @@ iii. Modify the highlighted contents of config.json file (contents of the file i
     "RUN_CVC"                  : "1",
     "VDD_NETS"                 : "vccd1",
     "VERILOG_FILES"            : ["../../caravel/verilog/rtl/defines.v", "../../verilog/rtl/user_proj_example.v"]
-}
+
 
 
 
