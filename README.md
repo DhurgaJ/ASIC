@@ -71,10 +71,15 @@ klayout user_proj_example.gds
 ################################################################################
 
 Document link for Caravel, openlane flow and sky130A 
+
 https://efabless.com/open_shuttle_program
+
 https://github.com/The-OpenROAD-Project/OpenLane/blob/master/docs/source/hardening_macros.md
+
 https://github.com/The-OpenROAD-Project/OpenLane#installation-notes
+
 https://github.com/efabless/caravel
+
 https://skywater-pdk.readthedocs.io/en/main/rules/assumptions.html#process-stack-diagram
 
 ##############################################################################
@@ -89,16 +94,16 @@ to directory
 
 ~/caravel_tutorial/caravel_walkthrough/openlane/counter_16bit/
 
-iii. Modify "DESIGN_NAME" , "VERILOG_FILES" contents of config.json file (contents of the file is given below)
+iii. Modify "DESIGN_NAME" , "VERILOG_FILES" of config.json file (contents of the file is given below)
 
     "PDK"                      : "sky130A",
     "STD_CELL_LIBRARY"         : "sky130_fd_sc_hd",
     "CARAVEL_ROOT"             : "../../caravel",
-   #### "CLOCK_NET"                : "counter.clk",
+    "CLOCK_NET"                : "counter.clk",
     "CLOCK_PERIOD"             : "10",
-   #### "CLOCK_PORT"               : "wb_clk_i",
+    "CLOCK_PORT"               : "wb_clk_i",
     "DESIGN_IS_CORE"           : "0",
-  ####  "DESIGN_NAME"              : "user_proj_example",
+    "DESIGN_NAME"              : "user_proj_example",
     "DIE_AREA"                 : "0 0 900 600",
     "DIODE_INSERTION_STRATEGY" : "4",
     "FP_PIN_ORDER_CFG"         : "pin_order.cfg",
@@ -109,7 +114,7 @@ iii. Modify "DESIGN_NAME" , "VERILOG_FILES" contents of config.json file (conten
     "PL_TARGET_DENSITY"        : "0.05",
     "RUN_CVC"                  : "1",
     "VDD_NETS"                 : "vccd1",
-   #### "VERILOG_FILES"            : ["../../caravel/verilog/rtl/defines.v", ** **"../../verilog/rtl/user_proj_example.v"]
+    "VERILOG_FILES"            : ["../../caravel/verilog/rtl/defines.v", ** **"../../verilog/rtl/user_proj_example.v"]
 
 
 
@@ -117,13 +122,13 @@ iii. Modify "DESIGN_NAME" , "VERILOG_FILES" contents of config.json file (conten
 
 iv. Modify script_dir,CLOCK_PORT,CLOCK_NET contents in the below lines of config.tcl 
 
- #### set ::env(DESIGN_NAME) user_proj_example
- #### set ::env(VERILOG_FILES) "\
-	  $::env(CARAVEL_ROOT)/verilog/rtl/defines.v \
-	  $script_dir/../../verilog/rtl/user_proj_example.v"
-  set ::env(DESIGN_IS_CORE) 0
-####  set ::env(CLOCK_PORT) "wb_clk_i"
-####  set ::env(CLOCK_NET) "counter.clk"
+ set ::env(DESIGN_NAME) user_proj_example
+ set ::env(VERILOG_FILES) "\
+   $::env(CARAVEL_ROOT)/verilog/rtl/defines.v \
+   $script_dir/../../verilog/rtl/user_proj_example.v"
+ set ::env(DESIGN_IS_CORE) 0
+ set ::env(CLOCK_PORT) "wb_clk_i"
+ set ::env(CLOCK_NET) "counter.clk"
 
 B. Modify contents of the files under the folder rtl, includes, gl in the path
 
@@ -141,22 +146,22 @@ An example code is given below , the highlighted lines are to be retained
 module counter_16bit #(
        parameter BITS =32
 ) (
-#### `ifdef USE_POWER_PINS
-####    inout vccd1,
-####    inout vssd1,
-####    `endif
+`ifdef USE_POWER_PINS
+   inout vccd1,
+   inout vssd1,
+ `endif
     input clk, 
     input reset,
     output [3:0] count,
-####    output [3:0] io_oeb
+    output [3:0] io_oeb
   );
     wire clk;
     wire reset;
 
     reg [3:0] count;
-####    reg [3:0] io_oeb;
+    reg [3:0] io_oeb;
 
-####    assign io_oeb = 4'b0000;
+    assign io_oeb = 4'b0000;
 
     always @(negedge clk or posedge reset )
          if (reset) 
@@ -172,7 +177,7 @@ Highlighted contents to be edited
 #### Caravel user project includes
 
 -v $(USER_PROJECT_VERILOG)/rtl/user_project_wrapper.v	     
-####  -v $(USER_PROJECT_VERILOG)/rtl/counter_16bit.v
+-v $(USER_PROJECT_VERILOG)/rtl/counter_16bit.v
 
 iv create your own design file under gl folder say named counter_16bit.v 
 ~/caravel_tutorial/caravel_walkthrough/verilog/gl
