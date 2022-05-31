@@ -130,7 +130,7 @@ iv. Modify script_dir,CLOCK_PORT,CLOCK_NET contents in the below lines of config
  set ::env(CLOCK_PORT) "wb_clk_i"
  set ::env(CLOCK_NET) "counter.clk"
 
-B. Modify contents of the files under the folder rtl, includes, gl in the path
+B. Modify contents of the files under the folder rtl, includes in the path
 
 ~/caravel_tutorial/caravel_walkthrough/verilog as described below
 
@@ -213,27 +213,6 @@ module counter_16bit (clk,
  wire _12_;
 
 
-
-v. Edit user_project_wrapper.v file under
-~/caravel_tutorial/caravel_walkthrough/verilog/gl
-to instantiate your design file as submodule. 
-
-A sample code showing instantiating counter_16bit module
-
-input [3:0] wbs_sel_i;
-
-counter_16bit mprj (.vccd1(vccd1),
-    .vssd1(vssd1),
-    .clk(wb_clk_i),
-    .reset(wb_rst_i),
-    .count(io_out[15:18]),
-    .io_oeb(io_oeb[15:18],
-    );
-endmodule
-
-
-
-
 C. To execute design flow 
 
 $ cd ~/caravel_tutorial/caravel_walkthrough
@@ -241,5 +220,10 @@ $ cd ~/caravel_tutorial/caravel_walkthrough
 $ export OPENLANE_ROOT=~/caravel_tutorial/openlane # you need to export this whenever you start a new shell
 
 $ export PDK_ROOT=~/caravel_tutorial/pdk # you need to export this whenever you start a new shell
-
+ 
 $ make counter_16bit.v
+
+D. Similarly modify user_project_wrapper folder in ~/caravel_tutorial/caravel_walkthrough/openlane and in ~/caravel_tutorial/caravel_walkthrough/verilog/rtl
+
+ In ~/caravel_tutorial/caravel_walkthrough/openlane/user_project_wrapper
+ edit mprj coordinate location for your macro
