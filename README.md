@@ -1,5 +1,5 @@
 ## ASIC
-Prequisite installation for Openlane and CARAVEL
+Prerequisite installation for Openlane and CARAVEL
 
 ####install git:
 $ sudo apt update
