@@ -1,0 +1,51 @@
+**.subckt inv_ay_xschem inp vdd outp gnd
+*.ipin inp
+*.opin outp
+*.iopin vdd
+*.iopin gnd
+XM1 outp inp gnd gnd sky130_fd_pr__nfet_01v8 L=0.15 W=0.42 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1 
+XM4 outp inp vdd VDD sky130_fd_pr__pfet_01v8 L=0.15 W=0.8 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1 
+V2 inp GND 1.8
+V4 vdd GND 1.8
+V5 gnd GND 0
+**** begin user architecture code
+
+
+
+.lib /home/dhurga/open_pdks/sky130/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+#.include /home/dhurga/skywater-pdk/libraries/sky130_fd_pr/latest/models/sky130_fd_pr__model__inductors.model.spice
+*.lib ~/open_pdks/sky130/sky130A/libs.tech/ngspice/sky130.lib.spice hh
+* Resistor/Capacitor
+*.include /home/dhurga/open_pdks/sky130/sky130A/libs.tech/ngspice/r+c/res_high__cap_high.spice
+*.include /home/dhurga/open_pdks/sky130/sky130A/libs.tech/ngspice/r+c/res_high__cap_high__lin.spice
+*.include /home/dhurga/open_pdks/sky130/sky130A/libs.tech/ngspice/corners/ff/specialized_cells.spice
+
+
+*.include ~/open_pdks/sky130/sky130A/libs.tech/ngspice/corners/tt/nonfet.spice/wb_flat.spice
+
+
+
+#.include /home/dhurga/skywater-pdk/libraries/sky130_fd_pr/latest/models/sky130_fd_pr__model__inductors.model.spice
+.option trtol=1
+.option chgtol=1e-16
+.save
+
+
+.control
+
+run
+
+
+.endc
+
+
+**** end user architecture code
+**.ends
+.GLOBAL GND
+** flattened .save nodes
+.save 
+.end

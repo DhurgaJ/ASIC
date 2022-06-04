@@ -1,0 +1,19 @@
+* SPICE3 file created from /home/dhurga/circuit_sim/nor_2in.ext - technology: sky130A
+
+.subckt sky130_fd_pr__pfet_01v8_L3EZX8 w_n109_n144# a_15_n44# a_n73_n44# a_n33_n141#
++ VSUBS
+X0 a_15_n44# a_n33_n141# a_n73_n44# w_n109_n144# sky130_fd_pr__pfet_01v8 ad=2.32e+11p pd=2.18e+06u as=2.32e+11p ps=2.18e+06u w=800000u l=150000u
+.ends
+
+.subckt sky130_fd_pr__nfet_01v8_A64BNL a_n33_33# a_15_n73# a_n73_n73# VSUBS
+X0 a_15_n73# a_n33_33# a_n73_n73# VSUBS sky130_fd_pr__nfet_01v8 ad=1.218e+11p pd=1.42e+06u as=1.218e+11p ps=1.42e+06u w=420000u l=150000u
+.ends
+
+.subckt x/home/dhurga/circuit_sim/nor_2in A B vdd y
+Xsky130_fd_pr__pfet_01v8_L3EZX8_0 w_230_240# a_266_340# y A sky130_fd_pr__pfet_01v8_L3EZX8_0/VSUBS
++ sky130_fd_pr__pfet_01v8_L3EZX8
+Xsky130_fd_pr__nfet_01v8_A64BNL_0 A y GND sky130_fd_pr__pfet_01v8_L3EZX8_0/VSUBS sky130_fd_pr__nfet_01v8_A64BNL
+X0 GND B y sky130_fd_pr__pfet_01v8_L3EZX8_0/VSUBS sky130_fd_pr__nfet_01v8 ad=2.421e+11p pd=3.45e+06u as=2.394e+11p ps=2.82e+06u w=420000u l=120000u
+X1 vdd B a_266_340# w_230_240# sky130_fd_pr__pfet_01v8 ad=2.32e+11p pd=2.18e+06u as=4.64e+11p ps=4.36e+06u w=800000u l=150000u
+.ends
+

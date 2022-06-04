@@ -1,0 +1,75 @@
+magic
+tech sky130A
+magscale 1 2
+timestamp 1653927425
+<< error_s >>
+rect -110 330 108 576
+rect 34 192 92 198
+rect 234 192 292 198
+rect 34 158 46 192
+rect 234 158 246 192
+rect 34 152 92 158
+rect 234 152 292 158
+<< nmos >>
+rect 248 36 278 120
+<< ndiff >>
+rect 190 108 248 120
+rect 190 48 202 108
+rect 236 48 248 108
+rect 190 36 248 48
+rect 278 108 336 120
+rect 278 48 290 108
+rect 324 48 336 108
+rect 278 36 336 48
+<< ndiffc >>
+rect 202 48 236 108
+rect 290 48 324 108
+<< psubdiff >>
+rect -254 20 -230 70
+rect -170 20 -146 70
+<< psubdiffcont >>
+rect -230 20 -170 70
+<< poly >>
+rect 230 192 296 208
+rect 230 158 246 192
+rect 280 158 296 192
+rect 230 142 296 158
+rect 248 120 278 142
+rect 248 10 278 36
+<< polycont >>
+rect 246 158 280 192
+<< locali >>
+rect 230 158 246 192
+rect 280 158 296 192
+rect 202 108 236 124
+rect -246 20 -230 70
+rect -170 20 -154 70
+rect 202 32 236 48
+rect 290 108 324 124
+rect 290 32 324 48
+<< viali >>
+rect 246 158 280 192
+rect 202 48 236 108
+rect 290 48 324 108
+<< metal1 >>
+rect 234 192 292 198
+rect 234 158 246 192
+rect 280 158 292 192
+rect 234 152 292 158
+rect 196 108 242 120
+rect 196 48 202 108
+rect 236 48 242 108
+rect 196 36 242 48
+rect 284 108 330 120
+rect 284 48 290 108
+rect 324 48 330 108
+rect 284 36 330 48
+use sky130_fd_pr__pfet_01v8_B76TKD  sky130_fd_pr__pfet_01v8_B76TKD_0
+timestamp 0
+transform 1 0 -1 0 1 436
+box -109 -106 109 140
+use sky130_fd_pr__nfet_01v8_A64BNL  sky130_fd_pr__nfet_01v8_A64BNL_0
+timestamp 0
+transform 1 0 63 0 1 109
+box -73 -99 73 99
+<< end >>

@@ -1,0 +1,71 @@
+magic
+tech sky130A
+magscale 1 2
+timestamp 1653977800
+<< error_s >>
+rect 80 333 138 339
+rect 80 299 92 333
+rect 80 293 138 299
+rect 44 172 102 178
+rect 44 138 56 172
+rect 44 132 102 138
+<< nwell >>
+rect 210 280 420 600
+<< psubdiff >>
+rect 210 80 270 104
+rect 210 -4 270 20
+<< nsubdiff >>
+rect 250 470 370 500
+rect 250 410 280 470
+rect 340 410 370 470
+rect 250 380 370 410
+<< psubdiffcont >>
+rect 210 20 270 80
+<< nsubdiffcont >>
+rect 280 410 340 470
+<< poly >>
+rect 40 180 140 300
+<< locali >>
+rect 136 530 170 650
+rect 260 470 360 490
+rect -180 458 -70 460
+rect -180 388 82 458
+rect 260 410 280 470
+rect 340 410 360 470
+rect 260 390 360 410
+rect -180 100 -70 388
+rect -180 50 30 100
+rect 210 80 270 96
+rect 100 12 130 20
+rect 100 -50 134 12
+rect 210 4 270 20
+<< viali >>
+rect 120 650 180 700
+rect 90 -90 150 -50
+<< metal1 >>
+rect -30 700 250 710
+rect -30 650 120 700
+rect 180 650 250 700
+rect -30 630 250 650
+rect -20 -50 190 -30
+rect -20 -90 90 -50
+rect 150 -90 190 -50
+rect -20 -100 190 -90
+use sky130_fd_pr__pfet_01v8_L3EZX8  sky130_fd_pr__pfet_01v8_L3EZX8_0
+timestamp 1653977800
+transform 1 0 109 0 1 424
+box -109 -144 109 178
+use sky130_fd_pr__nfet_01v8_A64BNL  sky130_fd_pr__nfet_01v8_A64BNL_0
+timestamp 1653977800
+transform 1 0 73 0 1 89
+box -73 -99 73 99
+<< labels >>
+rlabel metal1 40 630 40 630 1 vdd
+port 2 n
+rlabel poly 40 260 40 260 7 inp
+port 1 w
+rlabel locali -180 160 -180 160 3 outp
+port 3 e
+rlabel metal1 50 -100 50 -100 5 gnd
+port 4 s
+<< end >>
