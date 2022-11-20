@@ -1,0 +1,4 @@
+**.subckt delay_singlestage
+**.ends
+** flattened .save nodes
+.end

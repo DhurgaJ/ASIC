@@ -1,0 +1,12 @@
+{
+    "module_name": "pllInst_error",
+    "generator": "pll",
+    "specifications": {
+    	"temperature": { "min": -20, "max": 100 },
+    	"power": "",
+    	"error": "",
+    	"area": "",
+    	"optimization":"error",
+    	"model" :"modelfile.csv"
+	}
+}

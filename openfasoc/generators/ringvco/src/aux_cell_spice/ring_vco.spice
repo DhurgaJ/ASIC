@@ -1,0 +1,142 @@
+**.subckt ring_vco vgnd vbp vinit vdd
+*.ipin vgnd
+*.ipin vbp
+*.ipin vinit
+*.ipin vdd
+Xinv1 osc net1 vd net7 delay_singlestage
+Xinv2 net1 vin vd net7 delay_singlestage
+Xinv3 vin vout vd net7 delay_singlestage
+Xinv4 vout net2 vd net7 delay_singlestage
+Xinv5 net2 net3 vd net7 delay_singlestage
+Xinv6 net3 net6 vd net7 delay_singlestage
+XM13 vd vbp vdd vdd sky130_fd_pr__pfet_01v8_lvt L=cl W=cw nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1 
+XM14 vd vinit vdd vdd sky130_fd_pr__pfet_01v8_lvt L=1 W=5 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1 
+Xinv7 net6 net4 vd net7 delay_singlestage
+Xinv8 net4 net5 vd net7 delay_singlestage
+Xinv9 net5 osc vd net7 delay_singlestage
+XC1 vd net7 sky130_fd_pr__cap_mim_m3_1 W=1 L=1 MF=1 m=1
+**** begin user architecture code
+
+*.lib ~/open_pdks/sky130/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+.param mc_mm_switch=0
+.param mc_pr_switch=0
+
+.include ~/open_pdks/sky130/sky130A/libs.tech/ngspice/corners/tt/nonfet.spice
+
+
+*model
+.include ~/open_pdks/sky130/sky130A/libs.tech/ngspice/all.spice
+
+*mosfet
+.include ~/open_pdks/sky130/sky130A/libs.ref/sky130_fd_pr/spice/sky130_fd_pr__pfet_01v8__tt.corner.spice
+.inclued ~/open_pdks/sky130/sky130A/libs.ref/sky130_fd_pr/spice/sky130_fd_pr__nfet_01v8__tt.corner.spice
+
+*mismatch parameters
+.include ~/open_pdks/sky130/sky130A/libs.ref/sky130_fd_pr/spice/sky130_fd_pr__pfet_01v8__mismatch.corner.spice
+.include ~/open_pdks/sky130/sky130A/libs.ref/sky130_fd_pr/spice/sky130_fd_pr__nfet_01v8__mismatch.corner.spice
+.MODEL swmod SW(VT=0.9 VH=0.01 RON=1 ROFF=10000000000)
+
+
+
+.tran 1ns 600us
+.save vcntl clkdiv2 clkdiv4q
+
+
+
+.lib /home/dhurga/open_pdks/sky130/sky130A/libs.tech/ngspice/sky130.lib.spice ff
+*.lib ~/open_pdks/sky130/sky130A/libs.tech/ngspice/sky130.lib.spice ss
+.param mc_mm_switch=0
+.param mc_pr_switch=0
+
+
+
+.include ~/open_pdks/sky130/sky130A/libs.tech/ngspice/corners/tt/nonfet.spice
+
+
+
+
+*model
+*.include ~/open_pdks/sky130/sky130A/libs.tech/ngspice/all.spice
+
+
+
+*mosfet
+*.include ~/open_pdks/sky130/sky130A/libs.ref/sky130_fd_pr/spice/sky130_fd_pr__pfet_01v8_lvt__tt.corner.spice
+*.inclued ~/open_pdks/sky130/sky130A/libs.ref/sky130_fd_pr/spice/sky130_fd_pr__nfet_01v8_lvt__tt.corner.spice
+
+
+
+*mismatch parameters
+*.include ~/open_pdks/sky130/sky130A/libs.ref/sky130_fd_pr/spice/sky130_fd_pr__pfet_01v8_lvt__mismatch.corner.spice
+*.include ~/open_pdks/sky130/sky130A/libs.ref/sky130_fd_pr/spice/sky130_fd_pr__nfet_01v8_lvt__mismatch.corner.spice
+
+
+
+*mosfet
+*.include ~/open_pdks/sky130/sky130A/libs.ref/sky130_fd_pr/spice/sky130_fd_pr__pfet_01v8__tt.corner.spice
+*.inclued ~/open_pdks/sky130/sky130A/libs.ref/sky130_fd_pr/spice/sky130_fd_pr__nfet_01v8__tt.corner.spice
+
+
+
+*mismatch parameters
+*.include ~/open_pdks/sky130/sky130A/libs.ref/sky130_fd_pr/spice/sky130_fd_pr__pfet_01v8__mismatch.corner.spice
+*.include ~/open_pdks/sky130/sky130A/libs.ref/sky130_fd_pr/spice/sky130_fd_pr__nfet_01v8__mismatch.corner.spice
+
+
+**** end user architecture code
+**.ends
+
+* expanding   symbol:  /home/dhurga/delay_singlestage.sym # of pins=4
+* sym_path: /home/dhurga/delay_singlestage.sym
+* sch_path: /home/dhurga/delay_singlestage.sch
+.subckt delay_singlestage  vin vout vd vgnd
+*.opin vout
+*.ipin vd
+*.ipin vgnd
+*.ipin vin
+XM2 vout net4 net1 net1 sky130_fd_pr__pfet_01v8_lvt L=cl1 W=cw1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29'
++ as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)'
++ nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=m1 m=m1 
+XM3 vout net4 net2 net3 sky130_fd_pr__nfet_01v8_lvt L=cl2 W=cw2 nf=1 ad='int((nf+1)/2) * W/nf * 0.29'
++ as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)'
++ nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=m2 m=m2 
+XM1 net2 net4 net3 net3 sky130_fd_pr__nfet3_01v8_lvt L=cl3 W=cw3 nf=1 ad='int((nf+1)/2) * W/nf * 0.29'
++ as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)'
++ nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=m3 m=m3 
+.ends
+
+**** begin user architecture code
+
+
+
+.param cl=1 m1=1
+.param cw=1
+.param cw1=0.55 cl1=4
+.param cw2=7 cl2=8 m2=1
+.param cw3=1 cl3=1 m3=1
+.temp 80
+.control
+let i=0
+save vco
+tran 1n 200u
+plot vco
+while i<3
+run
+meas tran te trig v(vco) val=0.9 rise=109+i targ v(vco) val=0.9 rise=110+i
+*measures the time difference between v(1) reaching 0.5 V for the first time on its first rising
+*slope (TRIG) versus reaching 0.5 V again on its second rising slope (TARG). I.e. it measures
+*the signal period.
+let i=i+1
+end
+print te
+
+.endc
+
+**** end user architecture code
+** flattened .save nodes
+.save vcntl clkdiv2 clkdiv4q
+.end
